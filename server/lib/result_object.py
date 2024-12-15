@@ -35,8 +35,7 @@ class ResultObject:
                 else None)
 
 
-def parse_result_data(result_data: dict | None):
-    print(result_data)
+def build_result_object(result_data: dict | None):
     if result_data is None:
         return
     else:
