@@ -50,7 +50,8 @@ def _load_tdjson_library(tdjson_library_path: str):
     try:
         tdjson_library = SharedLibrary(tdjson_library_path)
     except OSError:
-        sys.exit("tdjson library was not found")
+        raise RuntimeError(
+            f"tdjson: tdjson library not found at path {tdjson_library_path}")
 
     return tdjson_library
 
