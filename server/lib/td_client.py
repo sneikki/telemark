@@ -57,9 +57,11 @@ def execute_query(query):
 
 
 def receive_result(timeout=1.0):
-    return validate_json_query_result(td_json.td_receive(timeout))
+    query_result = td_json.td_receive(timeout)
+
+    return (validate_json_query_result(query_result) if query_result
+            else None)
 
 
 def validate_json_query_result(query_result):
-    return (json.loads(query_result.decode("utf-8"))
-            if query_result else query_result)
+    return json.loads(query_result.decode("utf-8"))
