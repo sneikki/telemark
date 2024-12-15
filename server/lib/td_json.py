@@ -1,4 +1,5 @@
 import sys
+from typing import Callable
 from ctypes import CDLL as SharedLibrary, CFUNCTYPE, c_int, c_double, c_char_p
 
 
@@ -8,7 +9,7 @@ class TDJsonInterface(type):
         ...
 
     @staticmethod
-    def td_send(client_id: int, request: str) -> None:
+    def td_send(client_id: int, request: str | bytes) -> None:
         ...
 
     @staticmethod
@@ -16,12 +17,12 @@ class TDJsonInterface(type):
         ...
 
     @staticmethod
-    def td_execute(request: str) -> str:
+    def td_execute(request: str | bytes) -> str:
         ...
 
     @staticmethod
     def td_set_log_message_callback(max_verbosity_level: int,
-                                    callback: callable) -> None:
+                                    callback: Callable) -> None:
         ...
 
 
