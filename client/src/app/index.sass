@@ -1,0 +1,44 @@
+@use "sass:color"
+
+$logo-font-family: "Pacifico"
+$telemark-caption-font-family: "Sometype Mono"
+$telemark-button-font-family: "Sometype Mono"
+
+$foreground-color: #080808
+$background-color: #fafafa
+
+.telemark-button
+  appearance: none
+  border: none
+  outline: none
+  cursor: pointer
+
+  padding: 1rem 1.5rem
+  border-radius: 0.5em
+
+  background-color: $background-color
+  color: $foreground-color
+  font-family: $telemark-button-font-family
+  font-weight: 500
+  text-transform: lowercase
+
+  transition-duration: 300ms
+
+  &:hover
+    background-color: color.adjust($background-color, $lightness: -2%)
+
+  &.telemark-button-inverted
+    color: #fafafa
+    background-color: #080808
+
+    &:hover
+      background-color: color.adjust($foreground-color, $lightness: 7%)
+
+    &:disabled
+      background-color: color.adjust($foreground-color, $lightness: 25%)
+      color: color.adjust($background-color, $lightness: -25%)
+
+
+  &.telemark-button-large
+    font-size: 1.5rem
+    padding: 1.5rem 2rem
