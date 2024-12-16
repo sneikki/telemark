@@ -8,6 +8,15 @@ function useSocketIO(url?: string) {
     socketRef.current = io(url)
   }
 
+  function on(event: string, listener: (...args: unknown[]) => void) {
+    if (socketRef.current) {
+      socketRef.current?.on(event, listener)
+    }
+    else {
+      throw new Error("on: socket ref is null")
+    }
+  }
+
   function emitEvent(event: string, ...payload: unknown[]) {
     if (socketRef.current) {
       socketRef.current?.emit(event, ...payload)
@@ -20,6 +29,7 @@ function useSocketIO(url?: string) {
   useEffect(connect, [url])
 
   return {
+    on,
     emitEvent,
     isConnected: socketRef.current?.connected
   }

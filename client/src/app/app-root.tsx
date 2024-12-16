@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import "tidgrid"
 import useSocketIO from "../hooks/use-socketio"
@@ -16,6 +16,16 @@ function AppRoot() {
     socketio.emitEvent("authentication-request")
     setIsAuthenticationInProgress(true)
   }
+
+  useEffect(
+    function() {
+      socketio.on(
+        "provide-phone-number",
+        () => console.log("provide phone number")
+      )
+    },
+    []
+  )
 
   return (
     <div>
